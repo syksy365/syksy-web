@@ -1,0 +1,89 @@
+:global {
+  .ant-popover-inner-content {
+    padding: 0;
+    .ant-menu {
+      padding: 8px 0;
+      .ant-menu-item {
+        height: 32px;
+        line-height: 32px;
+        margin-top: 0;
+        margin-bottom: 0;
+        &:hover {
+          background-color: #f5f5f5;
+        }
+      }
+      .ant-menu-item-selected {
+        background-color: #f5f5f5;
+      }
+    }
+  }
+
+  .ant-tree li .ant-tree-node-content-wrapper:hover {
+    background-color: unset;
+  }
+}
+
+.inputField {
+  border: none;
+  border-bottom: 1px solid;
+  background: none;
+  line-height: normal;
+  min-width: 50px;
+  outline: none;
+  &:focus {
+    outline: none;
+  }
+}
+
+.titleContainer {
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+  .titleValue {
+    display: block;
+    overflow: hidden;
+    max-width: none;
+    flex: auto;
+    span {
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      position: relative;
+    }
+  }
+  .operationField {
+    display: flex;
+    margin-right: 4px;
+    align-items: center;
+    .buttonItem {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 8px;
+      width: 20px;
+      min-width: 20px;
+      height: 20px;
+      font-size: 14px;
+      -webkit-transition: background 0.35s ease-in-out;
+      transition: background 0.35s ease-in-out;
+      &:hover {
+        background-color: #e8e8e8;
+        border-radius: 2px;
+      }
+      .anticon {
+        display: inline-block;
+        color: inherit;
+        font-style: normal;
+        line-height: 0;
+        text-align: center;
+        text-transform: none;
+        vertical-align: -0.125em;
+        text-rendering: optimizeLegibility;
+        /* -webkit-font-smoothing: antialiased; */
+        -moz-osx-font-smoothing: grayscale;
+      }
+    }
+  }
+}
