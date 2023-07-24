@@ -245,7 +245,7 @@ const Login: React.FC = () => {
                       </Col>
                       <Col span={11} onClick={refreshCaptcha}>
                         <div style={{ position: "relative" }}>
-                          <img style={{ position: 'absolute', height: "40px", width: "148px" }} src="/qz/api/captcha" key={captchaKey} />
+                          <img height="40px" width="148px" style={{ position: 'absolute', maxWidth: "100%", height: "auto" }} src={"/qz/api/captcha?key=" + captchaKey} key={captchaKey} />
                           <span style={{ position: 'absolute', display: expired ? "flex" : "none", height: "40px", width: "148px", backdropFilter: "blur(6px)", fontSize: 'larger', alignItems: 'center', textAlign: 'center' }}>已过期，点击刷新</span>
                         </div>
                       </Col>
