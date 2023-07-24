@@ -1,11 +1,12 @@
-import { LockTwoTone, UserOutlined } from '@ant-design/icons';
-import { Alert, message } from 'antd';
-import React, { useState } from 'react';
+import { LockTwoTone, UserOutlined, SafetyOutlined } from '@ant-design/icons';
+import { Alert, message, Col, Row } from 'antd';
+import React, { useState, useEffect, useRef } from 'react';
 import { ProForm, ProFormCheckbox, ProFormText } from '@ant-design/pro-components';
 import { useIntl, Link, history, FormattedMessage, SelectLang, useModel } from '@umijs/max';
 import Footer from '@/components/Footer';
 import type { LoginParamsType } from '@/services/login';
-import { fakeAccountLogin } from '@/services/login';
+import { fakeAccountLogin, captchaStatus } from '@/services/login';
+import { nanoid } from 'nanoid';
 
 import styles from './index.less';
 
@@ -36,6 +37,38 @@ const goto = () => {
 };
 
 const Login: React.FC = () => {
+  const timeref = useRef<any>();
+  const [captchaEnable, setCaptchaEnable] = useState(false);
+  const [captchaEffectiveTime, setCaptchaEffectiveTime] = useState(30);
+
+  /**
+   * 验证码遮罩
+   */
+  const [expired, setExpired] = useState(false);
+  /**
+   * 验证码倒计时
+   */
+  const countDown = (effectiveTime: number) => {
+    clearInterval(timeref.current);
+    let count = effectiveTime;
+    timeref.current = setInterval(() => {
+      count--;
+      if (count < 0) {
+        setExpired(true);
+        clearInterval(timeref.current);
+      }
+    }, 1000)
+  }
+  useEffect(() => {
+    captchaStatus().then((res) => {
+      setCaptchaEnable(res.data.enable);
+      setCaptchaEffectiveTime(res.data.effectiveTime);
+      if (res.data.enable) {
+        countDown(res.data.effectiveTime);
+      }
+    });
+  }, []);
+
   const [submitting, setSubmitting] = useState(false);
   const [userLoginState, setUserLoginState] = useState<API.LoginStateType>({});
   const { initialState, setInitialState } = useModel('@@initialState');
@@ -70,6 +103,7 @@ const Login: React.FC = () => {
       if (msg.status === 'ok') {
         message.success('登录成功！');
         await fetchUserInfo();
+        clearInterval(timeref.current);
         goto();
         return;
       }
@@ -82,13 +116,21 @@ const Login: React.FC = () => {
   };
   const { status } = userLoginState;
 
+  /**
+   * 刷新验证码
+   */
+  const [captchaKey, setCaptchaKey] = useState<string>(nanoid());
+  const refreshCaptcha = () => {
+    setCaptchaKey(nanoid());
+    countDown(captchaEffectiveTime);
+    setExpired(false);
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.lang}>{SelectLang && <SelectLang />}</div>
       <div className={styles.content}>
         <div className={styles.form}>
-
-
           <div className={styles.top}>
             <div className={styles.header}>
               <Link to="/">
@@ -128,10 +170,7 @@ const Login: React.FC = () => {
 
               {status === 'error' && (
                 <LoginMessage
-                  content={intl.formatMessage({
-                    id: 'pages.login.accountLogin.errorMessage',
-                    defaultMessage: '账户或密码错误（admin/ant.design)',
-                  })}
+                  content={userLoginState.message || "登录失败"}
                 />
               )}
 
@@ -144,7 +183,7 @@ const Login: React.FC = () => {
                   }}
                   placeholder={intl.formatMessage({
                     id: 'pages.login.username.placeholder',
-                    defaultMessage: '用户名: admin or user',
+                    defaultMessage: '用户名: admin',
                   })}
                   rules={[
                     {
@@ -152,7 +191,6 @@ const Login: React.FC = () => {
                       message: (
                         <FormattedMessage
                           id="pages.login.username.required"
-                          defaultMessage="请输入用户名!"
                         />
                       ),
                     },
@@ -165,8 +203,7 @@ const Login: React.FC = () => {
                     prefix: <LockTwoTone className={styles.prefixIcon} />,
                   }}
                   placeholder={intl.formatMessage({
-                    id: 'pages.login.password.placeholder',
-                    defaultMessage: '密码: ant.design',
+                    id: 'pages.login.password.placeholder'
                   })}
                   rules={[
                     {
@@ -180,6 +217,41 @@ const Login: React.FC = () => {
                     },
                   ]}
                 />
+
+                {
+                  captchaEnable ? (
+                    <Row gutter={8}>
+                      <Col span={13}>
+                        <ProFormText
+                          name="captcha"
+                          fieldProps={{
+                            size: 'large',
+                            prefix: <SafetyOutlined className={styles.prefixIcon} />,
+                          }}
+                          placeholder={intl.formatMessage({
+                            id: 'pages.login.captcha.placeholder'
+                          })}
+                          rules={[
+                            {
+                              required: true,
+                              message: (
+                                <FormattedMessage
+                                  id="pages.login.captcha.required"
+                                />
+                              ),
+                            },
+                          ]}
+                        />
+                      </Col>
+                      <Col span={11} onClick={refreshCaptcha}>
+                        <div style={{ position: "relative" }}>
+                          <img style={{ position: 'absolute', height: "40px", width: "148px" }} src="/qz/api/captcha" key={captchaKey} />
+                          <span style={{ position: 'absolute', display: expired ? "flex" : "none", height: "40px", width: "148px", backdropFilter: "blur(6px)", fontSize: 'larger', alignItems: 'center', textAlign: 'center' }}>已过期，点击刷新</span>
+                        </div>
+                      </Col>
+                    </Row>
+                  ) : null
+                }
               </>
               <div
                 style={{

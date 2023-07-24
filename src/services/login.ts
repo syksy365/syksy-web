@@ -22,3 +22,11 @@ export async function getFakeCaptcha(mobile: string) {
 export async function outLogin() {
   return request('/qz/api/login/out-login');
 }
+
+/**
+ * 登录验证码开启状态和有效时长查询
+ * @returns 
+ */
+export async function captchaStatus() {
+  return request('/qz/api/captcha/status');
+}

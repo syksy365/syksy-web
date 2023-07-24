@@ -43,6 +43,7 @@ specifiers:
   lodash: ^4.17.11
   mockjs: ^1.1.0
   moment: ^2.29.0
+  nanoid: ^4.0.2
   omit.js: ^2.0.2
   prettier: ^2.5.0
   pro-download: 1.0.1
@@ -82,6 +83,7 @@ dependencies:
   codemirror: 5.65.7
   lodash: 4.17.21
   moment: 2.29.4
+  nanoid: 4.0.2
   omit.js: 2.0.2
   qs: 6.11.0
   rc-menu: 9.6.0_sfoxds7t5ydpegc3knd667wn6m
@@ -6143,8 +6145,6 @@ packages:
         optional: true
       type-fest:
         optional: true
-      webpack:
-        optional: true
       webpack-dev-server:
         optional: true
       webpack-hot-middleware:
@@ -6182,8 +6182,6 @@ packages:
       sockjs-client:
         optional: true
       type-fest:
-        optional: true
-      webpack:
         optional: true
       webpack-dev-server:
         optional: true
@@ -8457,7 +8455,7 @@ packages:
       lodash.throttle: 4.1.1
       mime-match: 1.0.2
       namespace-emitter: 2.0.1
-      nanoid: 4.0.1
+      nanoid: 4.0.2
       preact: 10.10.0
     dev: false
 
@@ -8477,7 +8475,7 @@ packages:
       is-shallow-equal: 1.0.1
       lodash.debounce: 4.0.8
       memoize-one: 6.0.0
-      nanoid: 4.0.1
+      nanoid: 4.0.2
       preact: 10.10.0
     dev: false
 
@@ -10747,9 +10745,6 @@ packages:
     engines: {node: '>= 12.13.0'}
     peerDependencies:
       webpack: ^5.0.0
-    peerDependenciesMeta:
-      webpack:
-        optional: true
     dependencies:
       icss-utils: 5.1.0_postcss@8.4.21
       postcss: 8.4.21
@@ -13007,8 +13002,6 @@ packages:
         optional: true
       vue-template-compiler:
         optional: true
-      webpack:
-        optional: true
     dependencies:
       '@babel/code-frame': 7.18.6
       '@types/json-schema': 7.0.11
@@ -13036,8 +13029,6 @@ packages:
       webpack: ^5.11.0
     peerDependenciesMeta:
       vue-template-compiler:
-        optional: true
-      webpack:
         optional: true
     dependencies:
       '@babel/code-frame': 7.18.6
@@ -13707,9 +13698,6 @@ packages:
     engines: {node: '>=10.13.0'}
     peerDependencies:
       webpack: ^5.20.0
-    peerDependenciesMeta:
-      webpack:
-        optional: true
     dependencies:
       '@types/html-minifier-terser': 6.1.0
       html-minifier-terser: 6.1.0
@@ -15745,8 +15733,8 @@ packages:
     hasBin: true
     dev: true
 
-  /nanoid/4.0.1:
-    resolution: {integrity: sha512-udKGtCCUafD3nQtJg9wBhRP3KMbPglUsgV5JVsXhvyBs/oefqb4sqMEhKBBgqZncYowu58p1prsZQBYvAj/Gww==}
+  /nanoid/4.0.2:
+    resolution: {integrity: sha512-7ZtY5KTCNheRGfEFxnedV5zFiORN1+Y1N6zvPTnHQd8ENUvfaDBeuJDZb2bN/oXwXxu3qkTXDzy57W5vAmDTBw==}
     engines: {node: ^14 || ^16 || >=18}
     hasBin: true
     dev: false
@@ -18964,8 +18952,6 @@ packages:
     peerDependenciesMeta:
       typescript:
         optional: true
-      webpack:
-        optional: true
     dependencies:
       '@babel/code-frame': 7.18.6
       address: 1.2.0
@@ -19871,9 +19857,6 @@ packages:
     hasBin: true
     peerDependencies:
       rollup: ^2.0.0
-    peerDependenciesMeta:
-      rollup:
-        optional: true
     dependencies:
       nanoid: 3.3.4
       open: 8.4.0
