@@ -162,6 +162,7 @@ const Login: React.FC = () => {
                   },
                 },
               }}
+              isKeyPressSubmit={true}
               onFinish={async (values: any) => {
                 handleSubmit(values);
               }}
