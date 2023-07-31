@@ -55,6 +55,8 @@
         "@uppy/drag-drop": "3.0.2",
         "@uppy/progress-bar": "3.0.2",
         "@uppy/status-bar": "3.2.3",
+        "@uppy/tus": "3.1.2",
+        "@uppy/file-input": "^3.0.2",
         "antd": "4.20.0",
         "classnames": "^2.3.0",
         "codemirror": "^5.55.0",
