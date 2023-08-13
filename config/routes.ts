@@ -83,10 +83,11 @@
     ],
   },
   {
-    path: '/file',
+    path:'/file',
+    access: 'canAccess',
     name: '文件管理',
     icon: 'smile',
-    component: './system/file',
+    component: './system/file/manager'
   },
   {
     path: '/',
