@@ -15,7 +15,7 @@ const Settings: LayoutSettings & {
   menu: {
     locale: false,  //关闭国际化
   },
-  title: '轻舟',
+  title: '海棠',
   pwa: false,
   logo: 'logo.svg',
   iconfontUrl: '',

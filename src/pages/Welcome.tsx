@@ -6,7 +6,7 @@ import styles from './Welcome.less';
 export default (): React.ReactNode => (
   <PageContainer>
     <Card>
-       欢迎使用轻舟平台支撑系统！
+       欢迎使用海棠平台支撑系统！
     </Card>
   </PageContainer>
 );

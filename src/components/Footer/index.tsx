@@ -9,7 +9,7 @@ export default () => (
       {
         key: 'gitee',
         title: <GithubOutlined />,
-        href: 'https://gitee.com/syksy',
+        href: 'https://github.com/syksy365',
         blankTarget: true,
       },
     ]}

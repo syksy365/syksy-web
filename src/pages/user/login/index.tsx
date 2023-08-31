@@ -135,7 +135,7 @@ const Login: React.FC = () => {
             <div className={styles.header}>
               <Link to="/">
                 <img alt="logo" className={styles.logo} src="logo.svg" />
-                <span className={styles.title}>轻舟</span>
+                <span className={styles.title}>海棠</span>
               </Link>
             </div>
             <div className={styles.desc}>为Java Web工程提供基础支撑</div>
