@@ -8,7 +8,7 @@ const { REACT_APP_ENV } = process.env;
 
 const getPublicPath = ()=>{
   if(REACT_APP_ENV ==='prod'){
-    return '/qz-ui/';
+    return '/rose-ui/';
   }else{
     return '/';
   }
